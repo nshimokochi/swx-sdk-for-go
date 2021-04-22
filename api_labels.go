@@ -24,63 +24,68 @@ var (
 	_ _context.Context
 )
 
-// ThingsStatusApiService ThingsStatusApi service
-type ThingsStatusApiService service
+// LabelsApiService LabelsApi service
+type LabelsApiService service
 
-type ApiListItemsRequest struct {
+type ApiCreateLabelRequest struct {
 	ctx _context.Context
-	ApiService *ThingsStatusApiService
+	ApiService *LabelsApiService
 	space string
-	collectionName string
+	createLabel *CreateLabel
 }
 
+func (r ApiCreateLabelRequest) CreateLabel(createLabel CreateLabel) ApiCreateLabelRequest {
+	r.createLabel = &createLabel
+	return r
+}
 
-func (r ApiListItemsRequest) Execute() (ThingStatusListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListItemsExecute(r)
+func (r ApiCreateLabelRequest) Execute() (CreateLabelResponse, *_nethttp.Response, error) {
+	return r.ApiService.CreateLabelExecute(r)
 }
 
 /*
- * ListItems List items
+ * CreateLabel Create label
+ * Send a new label to the platform
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param space
- * @param collectionName
- * @return ApiListItemsRequest
+ * @return ApiCreateLabelRequest
  */
-func (a *ThingsStatusApiService) ListItems(ctx _context.Context, space string, collectionName string) ApiListItemsRequest {
-	return ApiListItemsRequest{
+func (a *LabelsApiService) CreateLabel(ctx _context.Context, space string) ApiCreateLabelRequest {
+	return ApiCreateLabelRequest{
 		ApiService: a,
 		ctx: ctx,
 		space: space,
-		collectionName: collectionName,
 	}
 }
 
 /*
  * Execute executes the request
- * @return ThingStatusListResponse
+ * @return CreateLabelResponse
  */
-func (a *ThingsStatusApiService) ListItemsExecute(r ApiListItemsRequest) (ThingStatusListResponse, *_nethttp.Response, error) {
+func (a *LabelsApiService) CreateLabelExecute(r ApiCreateLabelRequest) (CreateLabelResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ThingStatusListResponse
+		localVarReturnValue  CreateLabelResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsStatusApiService.ListItems")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LabelsApiService.CreateLabel")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/spaces/{space}/collections/{collection-name}/things-status"
+	localVarPath := localBasePath + "/spaces/{space}/labels"
 	localVarPath = strings.Replace(localVarPath, "{"+"space"+"}", _neturl.PathEscape(parameterToString(r.space, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"collection-name"+"}", _neturl.PathEscape(parameterToString(r.collectionName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.createLabel == nil {
+		return localVarReturnValue, nil, reportError("createLabel is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -92,13 +97,15 @@ func (a *ThingsStatusApiService) ListItemsExecute(r ApiListItemsRequest) (ThingS
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "*/*"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.createLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -121,8 +128,8 @@ func (a *ThingsStatusApiService) ListItemsExecute(r ApiListItemsRequest) (ThingS
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v BaseError
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadFormedError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -131,13 +138,25 @@ func (a *ThingsStatusApiService) ListItemsExecute(r ApiListItemsRequest) (ThingS
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-			var v interface{}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthZError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v BaseError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -153,65 +172,98 @@ func (a *ThingsStatusApiService) ListItemsExecute(r ApiListItemsRequest) (ThingS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiShowItemRequest struct {
+type ApiListLabelRequest struct {
 	ctx _context.Context
-	ApiService *ThingsStatusApiService
+	ApiService *LabelsApiService
 	space string
-	collectionName string
-	thingId string
+	mqtt *bool
+	entityId *string
+	entityType *string
+	collectionName *string
+	labelName *string
 }
 
+func (r ApiListLabelRequest) Mqtt(mqtt bool) ApiListLabelRequest {
+	r.mqtt = &mqtt
+	return r
+}
+func (r ApiListLabelRequest) EntityId(entityId string) ApiListLabelRequest {
+	r.entityId = &entityId
+	return r
+}
+func (r ApiListLabelRequest) EntityType(entityType string) ApiListLabelRequest {
+	r.entityType = &entityType
+	return r
+}
+func (r ApiListLabelRequest) CollectionName(collectionName string) ApiListLabelRequest {
+	r.collectionName = &collectionName
+	return r
+}
+func (r ApiListLabelRequest) LabelName(labelName string) ApiListLabelRequest {
+	r.labelName = &labelName
+	return r
+}
 
-func (r ApiShowItemRequest) Execute() (ThingStatusResponse, *_nethttp.Response, error) {
-	return r.ApiService.ShowItemExecute(r)
+func (r ApiListLabelRequest) Execute() (LabelListResponse, *_nethttp.Response, error) {
+	return r.ApiService.ListLabelExecute(r)
 }
 
 /*
- * ShowItem Show item
+ * ListLabel List Labels
+ * List of all the labels for an space
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param space
- * @param collectionName
- * @param thingId
- * @return ApiShowItemRequest
+ * @return ApiListLabelRequest
  */
-func (a *ThingsStatusApiService) ShowItem(ctx _context.Context, space string, collectionName string, thingId string) ApiShowItemRequest {
-	return ApiShowItemRequest{
+func (a *LabelsApiService) ListLabel(ctx _context.Context, space string) ApiListLabelRequest {
+	return ApiListLabelRequest{
 		ApiService: a,
 		ctx: ctx,
 		space: space,
-		collectionName: collectionName,
-		thingId: thingId,
 	}
 }
 
 /*
  * Execute executes the request
- * @return ThingStatusResponse
+ * @return LabelListResponse
  */
-func (a *ThingsStatusApiService) ShowItemExecute(r ApiShowItemRequest) (ThingStatusResponse, *_nethttp.Response, error) {
+func (a *LabelsApiService) ListLabelExecute(r ApiListLabelRequest) (LabelListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ThingStatusResponse
+		localVarReturnValue  LabelListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsStatusApiService.ShowItem")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LabelsApiService.ListLabel")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/spaces/{space}/collections/{collection-name}/things-status/{thing-id}"
+	localVarPath := localBasePath + "/spaces/{space}/labels"
 	localVarPath = strings.Replace(localVarPath, "{"+"space"+"}", _neturl.PathEscape(parameterToString(r.space, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"collection-name"+"}", _neturl.PathEscape(parameterToString(r.collectionName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"thing-id"+"}", _neturl.PathEscape(parameterToString(r.thingId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.mqtt != nil {
+		localVarQueryParams.Add("mqtt", parameterToString(*r.mqtt, ""))
+	}
+	if r.entityId != nil {
+		localVarQueryParams.Add("entity_id", parameterToString(*r.entityId, ""))
+	}
+	if r.entityType != nil {
+		localVarQueryParams.Add("entity_type", parameterToString(*r.entityType, ""))
+	}
+	if r.collectionName != nil {
+		localVarQueryParams.Add("collection_name", parameterToString(*r.collectionName, ""))
+	}
+	if r.labelName != nil {
+		localVarQueryParams.Add("label_name", parameterToString(*r.labelName, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -222,7 +274,7 @@ func (a *ThingsStatusApiService) ShowItemExecute(r ApiShowItemRequest) (ThingSta
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "*/*"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -251,8 +303,8 @@ func (a *ThingsStatusApiService) ShowItemExecute(r ApiShowItemRequest) (ThingSta
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v BaseError
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthZError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -261,13 +313,15 @@ func (a *ThingsStatusApiService) ShowItemExecute(r ApiShowItemRequest) (ThingSta
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-			var v interface{}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v BaseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

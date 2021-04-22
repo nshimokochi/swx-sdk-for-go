@@ -14,30 +14,30 @@ import (
 	"encoding/json"
 )
 
-// ActionDelayResponseLinks struct for ActionDelayResponseLinks
-type ActionDelayResponseLinks struct {
+// ActionRunStatsLinks struct for ActionRunStatsLinks
+type ActionRunStatsLinks struct {
 	Href *string `json:"href,omitempty"`
 }
 
-// NewActionDelayResponseLinks instantiates a new ActionDelayResponseLinks object
+// NewActionRunStatsLinks instantiates a new ActionRunStatsLinks object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewActionDelayResponseLinks() *ActionDelayResponseLinks {
-	this := ActionDelayResponseLinks{}
+func NewActionRunStatsLinks() *ActionRunStatsLinks {
+	this := ActionRunStatsLinks{}
 	return &this
 }
 
-// NewActionDelayResponseLinksWithDefaults instantiates a new ActionDelayResponseLinks object
+// NewActionRunStatsLinksWithDefaults instantiates a new ActionRunStatsLinks object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewActionDelayResponseLinksWithDefaults() *ActionDelayResponseLinks {
-	this := ActionDelayResponseLinks{}
+func NewActionRunStatsLinksWithDefaults() *ActionRunStatsLinks {
+	this := ActionRunStatsLinks{}
 	return &this
 }
 
 // GetHref returns the Href field value if set, zero value otherwise.
-func (o *ActionDelayResponseLinks) GetHref() string {
+func (o *ActionRunStatsLinks) GetHref() string {
 	if o == nil || o.Href == nil {
 		var ret string
 		return ret
@@ -47,7 +47,7 @@ func (o *ActionDelayResponseLinks) GetHref() string {
 
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActionDelayResponseLinks) GetHrefOk() (*string, bool) {
+func (o *ActionRunStatsLinks) GetHrefOk() (*string, bool) {
 	if o == nil || o.Href == nil {
 		return nil, false
 	}
@@ -55,7 +55,7 @@ func (o *ActionDelayResponseLinks) GetHrefOk() (*string, bool) {
 }
 
 // HasHref returns a boolean if a field has been set.
-func (o *ActionDelayResponseLinks) HasHref() bool {
+func (o *ActionRunStatsLinks) HasHref() bool {
 	if o != nil && o.Href != nil {
 		return true
 	}
@@ -64,11 +64,11 @@ func (o *ActionDelayResponseLinks) HasHref() bool {
 }
 
 // SetHref gets a reference to the given string and assigns it to the Href field.
-func (o *ActionDelayResponseLinks) SetHref(v string) {
+func (o *ActionRunStatsLinks) SetHref(v string) {
 	o.Href = &v
 }
 
-func (o ActionDelayResponseLinks) MarshalJSON() ([]byte, error) {
+func (o ActionRunStatsLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Href != nil {
 		toSerialize["href"] = o.Href
@@ -76,38 +76,38 @@ func (o ActionDelayResponseLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableActionDelayResponseLinks struct {
-	value *ActionDelayResponseLinks
+type NullableActionRunStatsLinks struct {
+	value *ActionRunStatsLinks
 	isSet bool
 }
 
-func (v NullableActionDelayResponseLinks) Get() *ActionDelayResponseLinks {
+func (v NullableActionRunStatsLinks) Get() *ActionRunStatsLinks {
 	return v.value
 }
 
-func (v *NullableActionDelayResponseLinks) Set(val *ActionDelayResponseLinks) {
+func (v *NullableActionRunStatsLinks) Set(val *ActionRunStatsLinks) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableActionDelayResponseLinks) IsSet() bool {
+func (v NullableActionRunStatsLinks) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableActionDelayResponseLinks) Unset() {
+func (v *NullableActionRunStatsLinks) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableActionDelayResponseLinks(val *ActionDelayResponseLinks) *NullableActionDelayResponseLinks {
-	return &NullableActionDelayResponseLinks{value: val, isSet: true}
+func NewNullableActionRunStatsLinks(val *ActionRunStatsLinks) *NullableActionRunStatsLinks {
+	return &NullableActionRunStatsLinks{value: val, isSet: true}
 }
 
-func (v NullableActionDelayResponseLinks) MarshalJSON() ([]byte, error) {
+func (v NullableActionRunStatsLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableActionDelayResponseLinks) UnmarshalJSON(src []byte) error {
+func (v *NullableActionRunStatsLinks) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

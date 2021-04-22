@@ -68,7 +68,11 @@ type APIClient struct {
 
 	LabelApi *LabelApiService
 
+	LabelRelationsApi *LabelRelationsApiService
+
 	LabeledEntitiesApi *LabeledEntitiesApiService
+
+	LabelsApi *LabelsApiService
 
 	MQTTApi *MQTTApiService
 
@@ -117,7 +121,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.EventsApi = (*EventsApiService)(&c.common)
 	c.InvitationsApi = (*InvitationsApiService)(&c.common)
 	c.LabelApi = (*LabelApiService)(&c.common)
+	c.LabelRelationsApi = (*LabelRelationsApiService)(&c.common)
 	c.LabeledEntitiesApi = (*LabeledEntitiesApiService)(&c.common)
+	c.LabelsApi = (*LabelsApiService)(&c.common)
 	c.MQTTApi = (*MQTTApiService)(&c.common)
 	c.ModelVersionsApi = (*ModelVersionsApiService)(&c.common)
 	c.ModelsApi = (*ModelsApiService)(&c.common)

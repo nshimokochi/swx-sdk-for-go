@@ -18,7 +18,7 @@ import (
 type EventDeploymentStats struct {
 	Data *ActionSendKubectlInputPropertiesArguments `json:"data,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Links *[]ActionDelayResponseLinks `json:"links,omitempty"`
+	Links *[]ActionRunStatsLinks `json:"links,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
@@ -104,9 +104,9 @@ func (o *EventDeploymentStats) SetDescription(v string) {
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *EventDeploymentStats) GetLinks() []ActionDelayResponseLinks {
+func (o *EventDeploymentStats) GetLinks() []ActionRunStatsLinks {
 	if o == nil || o.Links == nil {
-		var ret []ActionDelayResponseLinks
+		var ret []ActionRunStatsLinks
 		return ret
 	}
 	return *o.Links
@@ -114,7 +114,7 @@ func (o *EventDeploymentStats) GetLinks() []ActionDelayResponseLinks {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventDeploymentStats) GetLinksOk() (*[]ActionDelayResponseLinks, bool) {
+func (o *EventDeploymentStats) GetLinksOk() (*[]ActionRunStatsLinks, bool) {
 	if o == nil || o.Links == nil {
 		return nil, false
 	}
@@ -130,8 +130,8 @@ func (o *EventDeploymentStats) HasLinks() bool {
 	return false
 }
 
-// SetLinks gets a reference to the given []ActionDelayResponseLinks and assigns it to the Links field.
-func (o *EventDeploymentStats) SetLinks(v []ActionDelayResponseLinks) {
+// SetLinks gets a reference to the given []ActionRunStatsLinks and assigns it to the Links field.
+func (o *EventDeploymentStats) SetLinks(v []ActionRunStatsLinks) {
 	o.Links = &v
 }
 

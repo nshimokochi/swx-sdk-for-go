@@ -131,15 +131,15 @@ Class | Method | HTTP request | Description
 *InvitationsApi* | [**ListSentInvitations**](docs/InvitationsApi.md#listsentinvitations) | **Get** /spaces/{space}/invitations | List Invitations sent from an Account
 *InvitationsApi* | [**PatchReceivedInvitation**](docs/InvitationsApi.md#patchreceivedinvitation) | **Patch** /invitations/{invitation_id} | Accept / Reject a received Invitation
 *InvitationsApi* | [**UpdateSentInvitation**](docs/InvitationsApi.md#updatesentinvitation) | **Put** /spaces/{space}/invitations/{invitation_id} | Update an Invitation
-*LabelApi* | [**CreateLabel**](docs/LabelApi.md#createlabel) | **Post** /spaces/{space}/labels | Create label
-*LabelApi* | [**CreateLabelRelation**](docs/LabelApi.md#createlabelrelation) | **Post** /spaces/{space}/labels/{label-id}/relations | Create label relation
-*LabelApi* | [**Delete**](docs/LabelApi.md#delete) | **Delete** /spaces/{space}/labels/{label-id}/relations | Delete Label relation
 *LabelApi* | [**DeleteLabel**](docs/LabelApi.md#deletelabel) | **Delete** /spaces/{space}/labels/{label-id} | Delete Label
-*LabelApi* | [**ListLabel**](docs/LabelApi.md#listlabel) | **Get** /spaces/{space}/labels | List Labels
 *LabelApi* | [**ShowLabel**](docs/LabelApi.md#showlabel) | **Get** /spaces/{space}/labels/{label-id} | Show Label
-*LabelApi* | [**ShowLabelItems**](docs/LabelApi.md#showlabelitems) | **Get** /spaces/{space}/labels/{label-id}/relations | Show Label Items
 *LabelApi* | [**UpdateLabel**](docs/LabelApi.md#updatelabel) | **Put** /spaces/{space}/labels/{label-id} | Update label
+*LabelRelationsApi* | [**CreateLabelRelation**](docs/LabelRelationsApi.md#createlabelrelation) | **Post** /spaces/{space}/labels/{label-id}/relations | Create label relation
+*LabelRelationsApi* | [**Delete**](docs/LabelRelationsApi.md#delete) | **Delete** /spaces/{space}/labels/{label-id}/relations | Delete Label relation
+*LabelRelationsApi* | [**ShowLabelItems**](docs/LabelRelationsApi.md#showlabelitems) | **Get** /spaces/{space}/labels/{label-id}/relations | Show Label Items
 *LabeledEntitiesApi* | [**SpacesSpaceLabeledEntitiesGet**](docs/LabeledEntitiesApi.md#spacesspacelabeledentitiesget) | **Get** /spaces/{space}/labeled-entities | 
+*LabelsApi* | [**CreateLabel**](docs/LabelsApi.md#createlabel) | **Post** /spaces/{space}/labels | Create label
+*LabelsApi* | [**ListLabel**](docs/LabelsApi.md#listlabel) | **Get** /spaces/{space}/labels | List Labels
 *MQTTApi* | [**CreateMQTTLabelCredentials**](docs/MQTTApi.md#createmqttlabelcredentials) | **Post** /spaces/{space}/mqtt/labels | Create MQTT credentials for a label
 *MQTTApi* | [**DeleteMQTTLabel**](docs/MQTTApi.md#deletemqttlabel) | **Delete** /spaces/{space}/mqtt/labels/{label-id} | Delete MQTT label
 *MQTTApi* | [**ListMQTTcredentials**](docs/MQTTApi.md#listmqttcredentials) | **Get** /spaces/{space}/mqtt/credentials | List space MQTT credentials
@@ -192,29 +192,14 @@ Class | Method | HTTP request | Description
 
  - [Account](docs/Account.md)
  - [AccountUserInfo](docs/AccountUserInfo.md)
- - [ActionDelay](docs/ActionDelay.md)
- - [ActionDelayInput](docs/ActionDelayInput.md)
- - [ActionDelayInputProperties](docs/ActionDelayInputProperties.md)
- - [ActionDelayInputPropertiesInput](docs/ActionDelayInputPropertiesInput.md)
  - [ActionDelayListResponse](docs/ActionDelayListResponse.md)
  - [ActionDelayListResponsePaging](docs/ActionDelayListResponsePaging.md)
- - [ActionDelayResponse](docs/ActionDelayResponse.md)
- - [ActionDelayResponseLinks](docs/ActionDelayResponseLinks.md)
  - [ActionListResponse](docs/ActionListResponse.md)
- - [ActionReboot](docs/ActionReboot.md)
- - [ActionRebootResponse](docs/ActionRebootResponse.md)
- - [ActionResponseElement1](docs/ActionResponseElement1.md)
- - [ActionResponseElement1Delay](docs/ActionResponseElement1Delay.md)
- - [ActionResponseElement1DelayInput](docs/ActionResponseElement1DelayInput.md)
- - [ActionResponseElement2](docs/ActionResponseElement2.md)
- - [ActionResponseElement2Delay](docs/ActionResponseElement2Delay.md)
- - [ActionResponseElement2DelayInput](docs/ActionResponseElement2DelayInput.md)
- - [ActionResponseElement3](docs/ActionResponseElement3.md)
- - [ActionResponseElement3Reboot](docs/ActionResponseElement3Reboot.md)
  - [ActionRunStats](docs/ActionRunStats.md)
  - [ActionRunStatsInput](docs/ActionRunStatsInput.md)
  - [ActionRunStatsInputProperties](docs/ActionRunStatsInputProperties.md)
  - [ActionRunStatsInputPropertiesInterval](docs/ActionRunStatsInputPropertiesInterval.md)
+ - [ActionRunStatsLinks](docs/ActionRunStatsLinks.md)
  - [ActionSendKubectl](docs/ActionSendKubectl.md)
  - [ActionSendKubectlInput](docs/ActionSendKubectlInput.md)
  - [ActionSendKubectlInputProperties](docs/ActionSendKubectlInputProperties.md)
@@ -227,6 +212,8 @@ Class | Method | HTTP request | Description
  - [AuthCodeConfig](docs/AuthCodeConfig.md)
  - [AuthZError](docs/AuthZError.md)
  - [AuthZErrorError](docs/AuthZErrorError.md)
+ - [BadFormedError](docs/BadFormedError.md)
+ - [BadFormedErrorError](docs/BadFormedErrorError.md)
  - [BaseError](docs/BaseError.md)
  - [BaseErrorError](docs/BaseErrorError.md)
  - [CollectionListResponse](docs/CollectionListResponse.md)
@@ -236,7 +223,6 @@ Class | Method | HTTP request | Description
  - [CollectionUpdateResponse](docs/CollectionUpdateResponse.md)
  - [CreateCluster](docs/CreateCluster.md)
  - [CreateClusterResponse](docs/CreateClusterResponse.md)
- - [CreateData](docs/CreateData.md)
  - [CreateDataResponse](docs/CreateDataResponse.md)
  - [CreateLabel](docs/CreateLabel.md)
  - [CreateLabelRelation](docs/CreateLabelRelation.md)
@@ -247,9 +233,6 @@ Class | Method | HTTP request | Description
  - [CredentialsStudio](docs/CredentialsStudio.md)
  - [CredentialsThing](docs/CredentialsThing.md)
  - [DataElement](docs/DataElement.md)
- - [DataListElement1](docs/DataListElement1.md)
- - [DataListElement2](docs/DataListElement2.md)
- - [DataListElement3](docs/DataListElement3.md)
  - [DataPagingBuildConfigs](docs/DataPagingBuildConfigs.md)
  - [DataPagingResources](docs/DataPagingResources.md)
  - [DeleteClusterResponse](docs/DeleteClusterResponse.md)
@@ -257,20 +240,11 @@ Class | Method | HTTP request | Description
  - [ErrorResponse](docs/ErrorResponse.md)
  - [ErrorResponseError](docs/ErrorResponseError.md)
  - [EventDeploymentStats](docs/EventDeploymentStats.md)
- - [EventHighCPU](docs/EventHighCPU.md)
- - [EventHighCPUData](docs/EventHighCPUData.md)
- - [EventHighCPUListResponse](docs/EventHighCPUListResponse.md)
- - [EventHighCPUResponse](docs/EventHighCPUResponse.md)
  - [EventKubectlLogs](docs/EventKubectlLogs.md)
  - [EventKubectlLogsData](docs/EventKubectlLogsData.md)
  - [EventListResponse](docs/EventListResponse.md)
  - [EventNodesStats](docs/EventNodesStats.md)
- - [EventResponse1](docs/EventResponse1.md)
- - [EventResponse1HighCPU](docs/EventResponse1HighCPU.md)
- - [EventResponse2](docs/EventResponse2.md)
- - [EventResponse2HighCPU](docs/EventResponse2HighCPU.md)
  - [Invitation](docs/Invitation.md)
- - [LabelDeleteResponse](docs/LabelDeleteResponse.md)
  - [LabelListElement1](docs/LabelListElement1.md)
  - [LabelListElementRelations](docs/LabelListElementRelations.md)
  - [LabelListResponse](docs/LabelListResponse.md)
@@ -319,13 +293,7 @@ Class | Method | HTTP request | Description
  - [ModelsResourcesSetParams](docs/ModelsResourcesSetParams.md)
  - [ModelsResourcesSetParamsResponse](docs/ModelsResourcesSetParamsResponse.md)
  - [PropertyBuildConfiguration](docs/PropertyBuildConfiguration.md)
- - [PropertyCPU](docs/PropertyCPU.md)
- - [PropertyCPUResponse](docs/PropertyCPUResponse.md)
- - [PropertyDisk](docs/PropertyDisk.md)
- - [PropertyDiskResponse](docs/PropertyDiskResponse.md)
  - [PropertyMasterNode](docs/PropertyMasterNode.md)
- - [PropertyMemory](docs/PropertyMemory.md)
- - [PropertyMemoryResponse](docs/PropertyMemoryResponse.md)
  - [PropertyStatus](docs/PropertyStatus.md)
  - [Secret](docs/Secret.md)
  - [ShowClusterResponse](docs/ShowClusterResponse.md)

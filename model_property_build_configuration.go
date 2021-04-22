@@ -17,7 +17,7 @@ import (
 // PropertyBuildConfiguration struct for PropertyBuildConfiguration
 type PropertyBuildConfiguration struct {
 	Description *string `json:"description,omitempty"`
-	Links *[]ActionDelayResponseLinks `json:"links,omitempty"`
+	Links *[]ActionRunStatsLinks `json:"links,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
@@ -72,9 +72,9 @@ func (o *PropertyBuildConfiguration) SetDescription(v string) {
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *PropertyBuildConfiguration) GetLinks() []ActionDelayResponseLinks {
+func (o *PropertyBuildConfiguration) GetLinks() []ActionRunStatsLinks {
 	if o == nil || o.Links == nil {
-		var ret []ActionDelayResponseLinks
+		var ret []ActionRunStatsLinks
 		return ret
 	}
 	return *o.Links
@@ -82,7 +82,7 @@ func (o *PropertyBuildConfiguration) GetLinks() []ActionDelayResponseLinks {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PropertyBuildConfiguration) GetLinksOk() (*[]ActionDelayResponseLinks, bool) {
+func (o *PropertyBuildConfiguration) GetLinksOk() (*[]ActionRunStatsLinks, bool) {
 	if o == nil || o.Links == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *PropertyBuildConfiguration) HasLinks() bool {
 	return false
 }
 
-// SetLinks gets a reference to the given []ActionDelayResponseLinks and assigns it to the Links field.
-func (o *PropertyBuildConfiguration) SetLinks(v []ActionDelayResponseLinks) {
+// SetLinks gets a reference to the given []ActionRunStatsLinks and assigns it to the Links field.
+func (o *PropertyBuildConfiguration) SetLinks(v []ActionRunStatsLinks) {
 	o.Links = &v
 }
 

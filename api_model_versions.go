@@ -33,11 +33,11 @@ type ApiAddVersionRequest struct {
 	space string
 	collectionName string
 	modelName string
-	requestBody *map[string]interface{}
+	modelVersionRequest *ModelVersionRequest
 }
 
-func (r ApiAddVersionRequest) RequestBody(requestBody map[string]interface{}) ApiAddVersionRequest {
-	r.requestBody = &requestBody
+func (r ApiAddVersionRequest) ModelVersionRequest(modelVersionRequest ModelVersionRequest) ApiAddVersionRequest {
+	r.modelVersionRequest = &modelVersionRequest
 	return r
 }
 
@@ -90,8 +90,8 @@ func (a *ModelVersionsApiService) AddVersionExecute(r ApiAddVersionRequest) (Mod
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.requestBody == nil {
-		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	if r.modelVersionRequest == nil {
+		return localVarReturnValue, nil, reportError("modelVersionRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -112,7 +112,7 @@ func (a *ModelVersionsApiService) AddVersionExecute(r ApiAddVersionRequest) (Mod
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.requestBody
+	localVarPostBody = r.modelVersionRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -650,11 +650,11 @@ type ApiUpdateVersionRequest struct {
 	thingId string
 	modelName string
 	versionName string
-	requestBody *map[string]interface{}
+	modelVersionResponse *ModelVersionResponse
 }
 
-func (r ApiUpdateVersionRequest) RequestBody(requestBody map[string]interface{}) ApiUpdateVersionRequest {
-	r.requestBody = &requestBody
+func (r ApiUpdateVersionRequest) ModelVersionResponse(modelVersionResponse ModelVersionResponse) ApiUpdateVersionRequest {
+	r.modelVersionResponse = &modelVersionResponse
 	return r
 }
 
@@ -713,8 +713,8 @@ func (a *ModelVersionsApiService) UpdateVersionExecute(r ApiUpdateVersionRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.requestBody == nil {
-		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	if r.modelVersionResponse == nil {
+		return localVarReturnValue, nil, reportError("modelVersionResponse is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -735,7 +735,7 @@ func (a *ModelVersionsApiService) UpdateVersionExecute(r ApiUpdateVersionRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.requestBody
+	localVarPostBody = r.modelVersionResponse
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

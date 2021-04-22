@@ -116,6 +116,10 @@ func NewConfiguration() *Configuration {
 				URL: "https://api.dev.altairsc.com",
 				Description: "Auth Public API",
 			},
+			{
+				URL: "http://api.swx.altairone.com",
+				Description: "No description provided",
+			},
 		},
 		OperationServers: map[string]ServerConfigurations{
 		},

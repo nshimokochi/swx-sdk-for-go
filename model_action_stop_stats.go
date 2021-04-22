@@ -17,7 +17,7 @@ import (
 // ActionStopStats struct for ActionStopStats
 type ActionStopStats struct {
 	Description *string `json:"description,omitempty"`
-	Links *[]ActionDelayResponseLinks `json:"links,omitempty"`
+	Links *[]ActionRunStatsLinks `json:"links,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
@@ -71,9 +71,9 @@ func (o *ActionStopStats) SetDescription(v string) {
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *ActionStopStats) GetLinks() []ActionDelayResponseLinks {
+func (o *ActionStopStats) GetLinks() []ActionRunStatsLinks {
 	if o == nil || o.Links == nil {
-		var ret []ActionDelayResponseLinks
+		var ret []ActionRunStatsLinks
 		return ret
 	}
 	return *o.Links
@@ -81,7 +81,7 @@ func (o *ActionStopStats) GetLinks() []ActionDelayResponseLinks {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActionStopStats) GetLinksOk() (*[]ActionDelayResponseLinks, bool) {
+func (o *ActionStopStats) GetLinksOk() (*[]ActionRunStatsLinks, bool) {
 	if o == nil || o.Links == nil {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *ActionStopStats) HasLinks() bool {
 	return false
 }
 
-// SetLinks gets a reference to the given []ActionDelayResponseLinks and assigns it to the Links field.
-func (o *ActionStopStats) SetLinks(v []ActionDelayResponseLinks) {
+// SetLinks gets a reference to the given []ActionRunStatsLinks and assigns it to the Links field.
+func (o *ActionStopStats) SetLinks(v []ActionRunStatsLinks) {
 	o.Links = &v
 }
 

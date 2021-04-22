@@ -16,7 +16,7 @@ import (
 
 // PropertyMasterNode struct for PropertyMasterNode
 type PropertyMasterNode struct {
-	Links *[]ActionDelayResponseLinks `json:"links,omitempty"`
+	Links *[]ActionRunStatsLinks `json:"links,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
@@ -39,9 +39,9 @@ func NewPropertyMasterNodeWithDefaults() *PropertyMasterNode {
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *PropertyMasterNode) GetLinks() []ActionDelayResponseLinks {
+func (o *PropertyMasterNode) GetLinks() []ActionRunStatsLinks {
 	if o == nil || o.Links == nil {
-		var ret []ActionDelayResponseLinks
+		var ret []ActionRunStatsLinks
 		return ret
 	}
 	return *o.Links
@@ -49,7 +49,7 @@ func (o *PropertyMasterNode) GetLinks() []ActionDelayResponseLinks {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PropertyMasterNode) GetLinksOk() (*[]ActionDelayResponseLinks, bool) {
+func (o *PropertyMasterNode) GetLinksOk() (*[]ActionRunStatsLinks, bool) {
 	if o == nil || o.Links == nil {
 		return nil, false
 	}
@@ -65,8 +65,8 @@ func (o *PropertyMasterNode) HasLinks() bool {
 	return false
 }
 
-// SetLinks gets a reference to the given []ActionDelayResponseLinks and assigns it to the Links field.
-func (o *PropertyMasterNode) SetLinks(v []ActionDelayResponseLinks) {
+// SetLinks gets a reference to the given []ActionRunStatsLinks and assigns it to the Links field.
+func (o *PropertyMasterNode) SetLinks(v []ActionRunStatsLinks) {
 	o.Links = &v
 }
 
